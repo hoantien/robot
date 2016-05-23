@@ -40,26 +40,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
-   
-/** @addtogroup STM32F4xx_HAL_Examples
-  * @{
-  */
 
-/** @addtogroup Templates
-  * @{
-  */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
+extern UART_HandleTypeDef UartHandle;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Exceptions Handlers                         */
 /******************************************************************************/
-
+void USARTx_IRQHandler(void)
+{
+  HAL_UART_IRQHandler(& UartHandle);
+}
 /**
   * @brief  This function handles NMI exception.
   * @param  None
