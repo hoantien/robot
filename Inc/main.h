@@ -12,6 +12,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "init.h"
+#include <string.h>
 
 #endif /* __MAIN_H */
 

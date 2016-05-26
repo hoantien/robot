@@ -99,10 +99,7 @@ void UART_init (void)
 
 PUTCHAR_PROTOTYPE
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
   HAL_UART_Transmit(&UartHandle, (uint8_t *)&ch, 1, 0xFFFF); 
-
   return ch;
 }
 
@@ -110,5 +107,8 @@ void Error_Handler(void)
 {
   while(1)
   {
+		
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    HAL_Delay(100); //100ms
   }
 }

@@ -8,18 +8,17 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#define SIZE 10
 
 extern UART_HandleTypeDef UartHandle;
-__IO ITStatus UartReady = RESET;
-
-/* Buffer used for transmission */
-uint8_t aTxBuffer[] = " ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT**** ";
 
 /* Buffer used for reception */
-uint8_t aRxBuffer[RXBUFFERSIZE];
+char aRxBuffer[SIZE];
+char *buf = aRxBuffer;
 
 int main(void)
 {
+	int i=0;
   HAL_Init();  
   /* Configure the System clock to 84 MHz */
   SystemClock_Config();
@@ -28,9 +27,14 @@ int main(void)
 	UART_init();
 	printf("\rttttttt\n");
   while (1)
-  {   
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    HAL_Delay(500); //100ms
+  {
+			HAL_UART_Receive_IT(&UartHandle,(uint8_t*) buf, SIZE);
+			i=strlen(buf);
+
+			printf("\r%s\n",buf);
+			printf("\r%d\n", i);
+			HAL_Delay(500); //500ms
+
   }
 }
 /***************************** END OF FILE *************************************/
