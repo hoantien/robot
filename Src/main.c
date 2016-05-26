@@ -26,11 +26,11 @@ int main(void)
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	gpio_init();
 	UART_init();
-
+	printf("\rttttttt\n");
   while (1)
-  {    
+  {   
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    HAL_Delay(100); //100ms
+    HAL_Delay(500); //100ms
   }
 }
 /***************************** END OF FILE *************************************/
